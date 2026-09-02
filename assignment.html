@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Chan Wei Hong - Web Design Portfolio</title>
+<style>
+	html {
+  scroll-behavior: smooth;
+}
+	:root{
+    --ink-navy: #0B3D5C;      
+    --paper: #EAF2F5;          
+    --line-cyan: #7FB8D6;      
+    --signal-orange: #E8792C;
+    --white: #FFFFFF;
+    --text-dark: #12222B;
+    --font-display: 'IBM Plex Mono', 'Courier New', monospace;
+    --font-body: 'Inter', 'Segoe UI', Arial, sans-serif;
+  }
+ 
+  * { box-sizing: border-box; margin:0; padding:0; }
+ 
+  body{
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    background: var(--paper);
+    line-height: 1.6;
+  }
+
+   nav{
+    background: var(--ink-navy);
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    padding: 1rem 2rem;
+    position: sticky;
+    top:0;
+    z-index: 10;
+  }
+  nav .brand{
+    font-family: var(--font-display);
+    color: var(--white);
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+  }
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap: 1.5rem;
+  }
+  nav ul li a{
+    color: var(--paper);
+    text-decoration:none;
+    font-size: 0.9rem;
+    font-family: var(--font-display);
+    border-bottom: 2px solid transparent;
+    padding-bottom: 2px;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  nav ul li a:hover,
+  nav ul li a:focus{
+    color: var(--signal-orange);
+    border-color: var(--signal-orange);
+    outline: none;
+  }
+.about-photo{
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--line-cyan);
+  float: right;
+  margin: 0 0 1rem 1.5rem;
+}
+  header.hero{
+    background-color: var(--ink-navy);
+    background-image:
+      linear-gradient(var(--line-cyan) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-cyan) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: -1px -1px;
+    color: var(--white);
+    padding: 5rem 2rem 4rem;
+    text-align:left;
+    position:relative;
+    border-bottom: 4px solid var(--signal-orange);
+  }
+  header.hero .eyebrow{
+    font-family: var(--font-display);
+    color: var(--line-cyan);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+  header.hero h1{
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    max-width: 700px;
+  }
+  header.hero p.role{
+    margin-top: 0.8rem;
+    font-size: 1.1rem;
+    color: var(--paper);
+    max-width: 600px;
+  }
+
+  .fig-label{
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    color: var(--signal-orange);
+    letter-spacing: 1.5px;
+    border: 1px solid var(--signal-orange);
+    display:inline-block;
+    padding: 2px 10px;
+    margin-bottom: 1rem;
+  }
+ 
+  section{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem;
+    border-bottom: 1px dashed var(--line-cyan);
+  }
+ 
+  section h2{
+    font-family: var(--font-display);
+    color: var(--ink-navy);
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+ 
+  #about p{ margin-bottom: 1rem; max-width: 65ch; }
+ 
+  .skills-list{
+    list-style: none;
+    display:flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+  .skills-list li{
+    background: var(--white);
+    border: 1px solid var(--line-cyan);
+    padding: 0.4rem 0.9rem;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: var(--ink-navy);
+  }
+
+   table{
+    width:100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: var(--white);
+  }
+  caption{
+    text-align:left;
+    font-size:0.85rem;
+    color:#555;
+    margin-bottom: 0.5rem;
+  }
+  th, td{
+    border: 1px solid var(--line-cyan);
+    padding: 0.7rem;
+    text-align:left;
+    font-size: 0.92rem;
+  }
+  th{
+    background: var(--ink-navy);
+    color: var(--white);
+    font-family: var(--font-display);
+    font-weight: 500;
+  }
+  tr:nth-child(even) td{ background: var(--paper); }
+  table a{ color: var(--signal-orange); }
+
+   .media-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  .media-grid figure{
+    background: var(--white);
+    border: 1px solid var(--line-cyan);
+    padding: 0.8rem;
+  }
+  .media-grid img, .media-grid video{
+    width:100%;
+    display:block;
+  }
+  .media-grid figcaption{
+    font-size: 0.8rem;
+    color:#555;
+    margin-top: 0.5rem;
+  }
+  audio{ width:100%; margin-top: 1rem; }
+
+   form{
+    max-width: 480px;
+    margin-top: 1rem;
+  }
+  fieldset{
+    border: 1px solid var(--line-cyan);
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  legend{
+    font-family: var(--font-display);
+    color: var(--ink-navy);
+    padding: 0 0.5rem;
+    font-size: 0.95rem;
+  }
+  label{
+    font-family: var(--font-display);
+    color: var(--ink-navy);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  input[type="text"],
+  input[type="email"],
+  textarea{
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid var(--line-cyan);
+    background: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+  }
+  textarea{
+    resize: vertical;
+  }
+  input:focus,
+  textarea:focus{
+    outline: 2px solid var(--signal-orange);
+    outline-offset: 1px;
+      }
+  .form-buttons{
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+  }
+  input[type="submit"]{
+    background: var(--signal-orange);
+    color: var(--white);
+    border: none;
+    padding: 0.7rem 1.2rem;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  input[type="submit"]:hover{ background: #c9631d; }
+  input[type="reset"]{
+    background: var(--white);
+    color: var(--ink-navy);
+    border: 1px solid var(--ink-navy);
+    padding: 0.7rem 1.2rem;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+cursor: pointer;
+  }
+  input[type="reset"]:hover{ background: var(--paper); }
+  footer{
+    background: var(--ink-navy);
+    color: var(--paper);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.85rem;
+    margin-top: 2rem;
+  }
+  footer a{ color: var(--line-cyan); }
+ </style>
+</head>
+<body>
+	<nav> 
+		<a href="#top" class="brand">WEI HONG's PORTFOLIO</a>
+		<ul>
+			<li><a href="https://sites.google.com/qiu.edu.my/chanweihong-portfolio/home#about" target="_top">About</a></li>
+			<li><a href="https://sites.google.com/qiu.edu.my/chanweihong-portfolio/home#projects" target="_top">Projects</a></li>
+			<li><a href="https://sites.google.com/qiu.edu.my/chanweihong-portfolio/home#media" target="_top">Media</a></li>
+			<li><a href="https://sites.google.com/qiu.edu.my/chanweihong-portfolio/home#contact" target="_top">Contact</a></li>
+		</ul>
+	</nav>
+<header class="hero">
+	<p class="eyebrow">INTRODUCTION</p>
+	<h1>Chan Wei Hong</h1>
+	<p class="role">Foundation in Science (Computer Stream) student at Quest International University, currently learning the basics of HTML and CSS. This page documents my learning journey, skills and how to reach me.</p>
+</header>
+
+<section id="about">
+	<span class="fig-label">ABOUT</span>
+	<h2>About Me</h2>
+	<img src="C:\Users\weih0\OneDrive\Desktop\web test\abc.jpeg" width=280px height=320px>
+	<p>I am a Foundation in Science(Computer Stream) student at Quest International University. I started learning HTML at the beginning of Semester 2. Actually, coding has been challenging at first, but I enjoy the process of building something visible from lines of code.
+	</p>
+	<br>
+	<p>
+	This portfolio is one of my first proper web projects. I built it to practise structuring a page of HTML and styling it with CSS, and the most important is to push myself to keep learning and eventually master front-end development.
+	</p>
+
+	<h2 style="margin-top:2rem;">Skills</h2>
+	<ul>
+		<li>HTML(Basics)</li>
+		<li>CSS(Learning)</li>
+		<li>Eager to Learn</li>
+		<li>Problem-Solving</li>
+	</ul>
+	</section>
+
+<section id="projects">
+	<span class="fig-label">PROJECTS</span>
+<table border=1>
+	<caption>My first web design project and its milestone</caption>
+	<thead>
+		<tr>
+			<th>Stage</th>
+			<th>Description</th>
+			<th>Tools Used</th>
+			<th>Link</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Wireframe Planning</td>
+			<td>Sketched the layout and section order for this portfolio before writing any code.</td>
+			<td>Hand sketch</td>
+			<td><a href="https://sites.google.com/qiu.edu.my/chanweihong-portfolio/home#about" target="_top">See resulting layout</a></td>
+		</tr>
+			
+
+		<tr>
+			<td>Personal Web Portfolio</td>
+			<td>This page is my first website built with HTML and CSS while learning the basics this semester.</td>
+			<td>HTML, CSS</td>
+			<td><a href="https://sites.google.com/qiu.edu.my/chanweihong-portfolio/home#contact" target="_top">View contact form</a></td>
+		</tr>
+		<tr>
+			<td>Google Sites Deployment</td>
+			<td>Embedding the HTML and CSS code into Google Sites using the embed-code block.</td>
+			<td>Google Sites</td>
+			<td><a href="https://sites.google.com/qiu.edu.my/chanweihong-portfolio/home" target="_blank" rel="noopener">View live site</a></td>
+		</tr>
+	</tbody>
+</table>
+</section>
+<br>
+<section id="media">
+	<span class="fig-label">MEDIA</span>
+	<div class="media grid">
+<figure>
+  <img src="https://images.pexels.com/photos/38312498/pexels-photo-38312498.jpeg?_gl=1*1bmskyu*_ga*NDg5MzU0NjE4LjE3ODgwMzM1NDc.*_ga_8JE65Q40S6*czE3ODgwMzM1NDckbzEkZzEkdDE3ODgwMzM1NTEkajU2JGwwJGgw" width=30% height=40%>
+  <figcaption>Photo by Ann H. on Pexels — used under the Pexels License.</figcaption>
+</figure>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/M7LBvsdhCuI?si=m5m_SH7jtplXXgP_&amp;start=349" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<div>
+<audio controls>
+	<audio src="C:\Users\weih0\Downloads\portfolio.mp3.mp3">
+	</audio>
+</div>
+</section>
+<br>
+<section id="contact">
+	<span class="fig-label">CONTACT</span>
+<p>
+	<ul>
+		<li><p>Email: <a href="mailto:weihong.chan@qiu.edu.my">weihong.chan@qiu.edu.my</a></p></li>
+		<li>Contact number: 010-3126759</li>
+	</ul>
+</section>
+	<section id="feedback">
+	<span class="fig-label">FEEDBACK</span>
+<form action="#" method="post">
+	<fieldset>
+		<legend>Feedback form</legend>
+	<label for="name">Full Name: </label>
+	<input type="text" id="name" name="name" placeholder="Your name">
+</p>
+<p>
+	<label for="email">Email Address: </label>
+	<input type="email" id="email" name="email">
+</p>
+<p>
+	<label for="comment">Comment: </label>
+	<input type="text" textarea cols=20 rows=10 id="comment" name=comment/ placeholder="Add  your comments">
+</p>
+<p><br>
+	<input type="reset" value="Reset"> &emsp;
+	<input type="submit" value="Send">
+
+</p>
+</form>
+</fieldset><br>
+<p>
+  OR<br><a href="https://docs.google.com/forms/d/e/1FAIpQLSdpZ9MXHlZu1_9Jvoga31O8DnlOSB4Do2D9y4xq1afzMKnVFQ/viewform?usp=publish-editor" target="_blank" rel="noopener">
+    Give feedback on this Google Form
+  </a>
+</p>
+</section>
+<br>
+<footer>
+  <p>&copy; 2026 Chan Wei Hong. FIS1104 — Introduction to Web Design, QIU.</p>
+</footer>
+</body>
+</html>
